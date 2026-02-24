@@ -141,19 +141,35 @@ This reduces false positives and improves reliability.
 Swagger API Interface
 ![SmartSelect_20260225_023603_Chrome](https://github.com/user-attachments/assets/04f5d83b-9b40-42f7-ae18-e799352a7395)
 
+Sample Console Output
+Processing log window...
+Detected RRC spike...
+Final Status: FAIL
 
+📈 Key Highlights
+Memory-efficient streaming (suitable for half-day logs)
+Window-level ML improves stability
+Hybrid rule + ML detection
+Automation-ready design
+Clean modular architecture
+Easily extendable for:
+Time-based windows
+Drift detection
+Log template extraction
+Model persistence
+Docker deployment
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+🔮 Future Improvements
+Time-based sliding windows (5-minute buckets)
+Log template extraction (Drain algorithm)
+Online learning models
+Model persistence & retraining
+Drift detection across builds
+Prometheus metrics integration
+Kafka-based real-time streaming
+🎯 Use Cases
+Telecom RAN validation
+5G gNB log monitoring
+CI/CD log intelligence
+Automation framework integration
+Network anomaly research
