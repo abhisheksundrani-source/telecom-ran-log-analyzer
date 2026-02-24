@@ -99,4 +99,61 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000
 Open in browser:
 http://localhost:8000/docs
 
+API Example
+Request
+POST /analyze
+Body:
+{
+  "file_path": "sample_logs/ran_sample.log"
+}
+
+Response
+{
+  "status": "PASS"
+}
+
+This allows integration into:
+CI/CD pipelines
+Robot Framework
+Pytest automation
+Jenkins / GitLab pipelines
+
+📊 Detection Strategy
+1️⃣ Failure Pattern Extraction
+Tracks telecom-specific breakages:
+RRC Setup Failure
+Handover Failure
+Attach Reject
+NGAP Reset
+Radio Link Failure
+Kernel Panic
+2️⃣ Window-Based Feature Aggregation
+Instead of analyzing each log line:
+Logs are grouped into windows
+Failure frequencies are calculated per window
+Window-level features are passed to ML model
+3️⃣ Hybrid Detection
+Layer 1: Rule-based threshold detection
+Layer 2: Isolation Forest anomaly detection
+This reduces false positives and improves reliability.
+
+🖼 Screenshots
+Swagger API Interface
+![SmartSelect_20260225_023603_Chrome](https://github.com/user-attachments/assets/04f5d83b-9b40-42f7-ae18-e799352a7395)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
