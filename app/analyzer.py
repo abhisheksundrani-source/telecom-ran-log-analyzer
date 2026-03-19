@@ -25,7 +25,7 @@ def analyze_stream(log_stream, window_size=200):
 
     return "PASS"
 
-def analyze_logs(logs, window_size=200):
+def analyze_logs(logs, window_size=50):
     """
     Analyze a list of logs directly (synthetic or real).
     """
@@ -40,12 +40,12 @@ def analyze_logs(logs, window_size=200):
             all_features.append(features)
 
             # Rule-based check
-            if len(features) > 0 and features[0] > 50:
+            if any(f > 20 for f in features):  # threshold per category
                 return "FAIL"
 
             window = []
 
-    if len(all_features) > 3:
+    if all_features:
         preds = detect_window_anomalies(all_features)
         if any(p == -1 for p in preds):
             return "FAIL"
