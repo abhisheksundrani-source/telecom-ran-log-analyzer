@@ -227,3 +227,66 @@ Final Status: FAIL
 - CI/CD log intelligence
 - Automation framework integration
 - Network anomaly research
+
+---
+
+## 🆕 Enhancement Log (March 19, 2026)
+✨ **New Features Added**
+- Synthetic Test Case Generator (app/test_case_generator.py)
+- Generates telecom failure scenarios (Sunny, Rainy, Mixed).
+- Produces synthetic logs when real logs are unavailable.
+- Supports categories like RRC Setup Failures, Handover Failures, NGAP Resets, Radio Link Failures, Kernel Panics, Attach Rejects.
+- FastAPI Endpoints
+- /generate_test_case → Create synthetic scenarios with preview logs.
+- /generate_and_analyze → Generate logs and immediately run anomaly detection (PASS/FAIL).
+- /analyze → Analyze real log files via streaming.
+- Models Organized (app/models/test_case_models.py)
+- Pydantic schemas for request/response consistency.
+- Clean separation of API and business logic.
+
+🛠 **Analyzer Improvements**
+- Added analyze_logs for direct synthetic log analysis.
+- Refined detection strategy:
+- Smaller window size for synthetic bursts.
+- Rule-based checks across all failure categories.
+- Isolation Forest applied whenever features exist.
+- Fixed premature return "PASS" bug in analyze_stream.
+
+🚀 **Codespaces Integration**
+- Added devcontainer.json and Dockerfile for seamless GitHub Codespaces execution.
+- Auto-install dependencies (pip install -r requirements.txt).
+- Port forwarding for FastAPI (8000).
+
+## 📊 Example API Workflow**
+**Generate and Analyze Rainy Scenario**
+```http
+POST /generate_and_analyze
+Body:
+{
+  "scenario": "rainy",
+  "expected": "FAIL"
+}
+```
+
+**Response**
+```json
+{
+  "scenario": "rainy",
+  "expected": "FAIL",
+  "analysis_result": "FAIL",
+  "logs_preview": [
+    "2026-03-19 18:51:59 - RRC_SETUP_FAILURE",
+    "2026-03-19 18:51:59 - HANDOVER_FAILURE",
+    "2026-03-19 18:51:59 - KERNEL_PANIC",
+    ...
+  ]
+}
+```
+
+---
+
+## 🎯 Impact
+- Framework now self-validates even without real logs.
+- Enables scenario-driven test case design (Sunny vs Rainy).
+- Produces automation-ready PASS/FAIL outputs for CI/CD.
+- Clean modular architecture for future extensions.
