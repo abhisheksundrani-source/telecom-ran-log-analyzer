@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.log_streamer import stream_logs
-from app.analyzer import analyze_stream
+from app.analyzer import analyze_stream, analyze_logs
 from pydantic import BaseModel
 from app.test_case_generator import design_test_case
 from app.models.test_case_models import TestCaseRequest, TestCaseResponse
