@@ -23,4 +23,4 @@ def analyze_stream(log_stream, window_size=200):
             if any(p == -1 for p in preds):                   
                 return "FAIL"
 
-        return "PASS"
+    return "PASS"

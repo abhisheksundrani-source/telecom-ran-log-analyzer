@@ -21,3 +21,14 @@ def generate_test_case(req: TestCaseRequest):
         expected=tc["expected"],
         logs=tc["logs"][:50]  # preview first 50 lines
     )
+
+@app.post("/generate_and_analyze")
+def generate_and_analyze(req: TestCaseRequest):
+    tc = design_test_case(req.scenario, req.expected)
+    result = analyze_logs(tc["logs"])   # run anomaly detection
+    return {
+        "scenario": tc["scenario"],
+        "expected": tc["expected"],
+        "analysis_result": result,      # PASS/FAIL from model
+        "logs_preview": tc["logs"][:50]
+    }
