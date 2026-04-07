@@ -2,3 +2,5 @@ scikit-learn
 fastapi
 uvicorn
 numpy
+pytest
+pytest-asyncio
